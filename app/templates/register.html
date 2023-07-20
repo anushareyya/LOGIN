@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#showPassword').click(function() {
+                var passwordField = $('#password');
+                var passwordFieldType = passwordField.attr('type');
+                var showPassword = $('#showPassword');
+
+                if (passwordFieldType === 'password') {
+                    passwordField.attr('type', 'text');
+                    showPassword.text('Hide Password');
+                } else {
+                    passwordField.attr('type', 'password');
+                    showPassword.text('Show Password');
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration</h1>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <div class="input-group">
+                <input type="password" id="password" name="password" class="form-control">
+                <div class="input-group-append">
+                    <button type="button" id="showPassword" class="btn btn-outline-primary">Show Password</button>
+                </div>
+            </div>
+        </div>
+        <!-- Add any additional fields for user registration -->
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</body>
+</html>
